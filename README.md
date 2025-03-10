@@ -14,7 +14,7 @@ A web client. ([repo](https://github.com/gotoplanb/monitors-client-nextjs))
 
 ## monitors-terraform
 
-TODO Infrastructure as code for AWS, Sumo Logic, and Vercel
+Infrastructure-as-code for AWS, Cloudflare, Sumo Logic, and Vercel. ([repo](https://github.com/gotoplanb/monitors-terraform))
 
 ## pester
 
