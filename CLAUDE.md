@@ -1,5 +1,16 @@
 # CLAUDE.md - Monitor Codebase Guidelines
 
+## Top-level Project Commands
+
+This repository contains a Makefile for coordinating git operations across all sub-repositories:
+
+- `make commit MESSAGE="Your commit message"` - Add and commit changes in all repos
+- `make tag TAG="v1.0.0"` - Tag all repos with the same tag
+- `make push-tags` - Push tags to remote for all repos
+- `make status` - Show git status for all repos
+- `make pull` - Pull latest changes for all repos
+- `make push` - Push commits to remote for all repos
+
 ## Build/Lint/Test Commands
 
 ### monitors-api (FastAPI)
