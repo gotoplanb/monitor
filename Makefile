@@ -73,6 +73,8 @@ status:
 		echo "\n=== Status for $$repo ==="; \
 		if [ -d "../$$repo/.git" ]; then \
 			cd "../$$repo" && \
+			echo "Branch: $$(git branch --show-current)" && \
+			echo "Status:" && \
 			git status -s && \
 			cd - > /dev/null || exit 1; \
 		else \
