@@ -1,5 +1,5 @@
 Find and fix issue #. Follow these steps:
-1. Understand the issue described in the ticket
+1. Understand the issue described in the ticket at the git repository
 2. Locate the relevant code in our codebase
 3. Implement a solution that addresses the root cause
 4. Add appropriate tests
