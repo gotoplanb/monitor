@@ -21,8 +21,8 @@ commit:
 	@echo "Adding and committing changes to all repositories..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Processing $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			git add . && \
 			git commit -m "$(MESSAGE)" && \
 			cd - > /dev/null || exit 1; \
@@ -39,8 +39,8 @@ tag:
 	@echo "Tagging all repositories with $(TAG)..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Tagging $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			git tag -a $(TAG) -m "Release $(TAG)" && \
 			cd - > /dev/null || exit 1; \
 		else \
@@ -55,8 +55,8 @@ push-tags:
 	@echo "Pushing tags to remote for all repositories..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Pushing tags for $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			git push --tags && \
 			cd - > /dev/null || exit 1; \
 		else \
@@ -71,8 +71,8 @@ status:
 	@echo "Showing status for all repositories..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Status for $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			echo "Branch: $$(git branch --show-current)" && \
 			echo "Status:" && \
 			git status -s && \
@@ -88,8 +88,8 @@ pull:
 	@echo "Pulling latest changes for all repositories..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Pulling $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			git pull && \
 			cd - > /dev/null || exit 1; \
 		else \
@@ -104,8 +104,8 @@ push:
 	@echo "Pushing commits to remote for all repositories..."
 	@for repo in $(REPOS); do \
 		echo "\n=== Pushing $$repo ==="; \
-		if [ -d "../$$repo/.git" ]; then \
-			cd "../$$repo" && \
+		if [ -d "$$repo/.git" ]; then \
+			cd "$$repo" && \
 			git push && \
 			cd - > /dev/null || exit 1; \
 		else \
