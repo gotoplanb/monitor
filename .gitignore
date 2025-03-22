@@ -1,6 +1,6 @@
-monitors-api/
-monitors-client-nextjs/
-monitors-terraform/
+monitor-api/
+monitor-client-nextjs/
+monitor-terraform/
 pester/
 trigger/
 .DS_Store
