@@ -2,4 +2,5 @@ monitors-api/
 monitors-client-nextjs/
 monitors-terraform/
 pester/
+trigger/
 .DS_Store
