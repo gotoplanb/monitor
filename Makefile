@@ -1,7 +1,7 @@
 # Makefile for coordinating git operations across all repositories
 
 # List of all repositories
-REPOS := monitors-api monitors-client-nextjs monitors-terraform pester
+REPOS := monitors-api monitors-client-nextjs monitors-terraform pester trigger
 
 # Default target
 .PHONY: help

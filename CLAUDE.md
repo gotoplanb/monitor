@@ -8,7 +8,7 @@ This project consists of several interrelated repositories that work together as
 
 - **monitor-api** (FastAPI backend)
   - Core functionality for monitor data handling
-  - Consumed by: monitor-client-nextjs
+  - Consumed by: monitor-client-nextjs, trigger
   - Tested by: pester
   - Deployed by: monitor-terraform
 
@@ -25,6 +25,12 @@ This project consists of several interrelated repositories that work together as
 - **pester** (Testing utilities)
   - Sends curl requests to validate API functionality
   - Tests: monitor-api endpoints
+
+- **trigger** (CDC Service)
+  - Change Data Capture for the monitor-api database
+  - Watches for: Data changes in monitor-api 
+  - Sends: Notifications to configured endpoints
+  - Uses PostgreSQL logical replication
 
 ## Key Files and Their Purpose
 
@@ -53,6 +59,13 @@ This project consists of several interrelated repositories that work together as
 - `curl_scripts/update_monitor_state.sh`: Scripts for testing API endpoints
 - `run_all_scripts.sh`: Orchestrates test execution
 
+### trigger
+- `app/models/trigger.py`: Trigger and event data models
+- `app/cdc/connection.py`: PostgreSQL logical replication setup
+- `app/cdc/listener.py`: Background thread for CDC
+- `app/events/processor.py`: Event processing and notification logic
+- `app/api/v1/endpoints/triggers.py`: API endpoints for managing triggers
+
 ## Common Cross-Repository Workflows
 
 1. **Adding a new monitor type**:
@@ -60,6 +73,7 @@ This project consists of several interrelated repositories that work together as
    - Update `monitor-api/app/schemas/monitor.py` with new schema fields
    - Add new API endpoints in monitor-api
    - Update frontend components in monitor-client-nextjs
+   - Update trigger CDC configuration to capture changes
    - Add test cases in pester
 
 2. **Changing infrastructure**:
@@ -71,6 +85,11 @@ This project consists of several interrelated repositories that work together as
    - Create endpoint in monitor-api
    - Update frontend to use the new endpoint
    - Add tests in pester to validate functionality
+
+4. **Adding a new trigger**:
+   - Configure a new trigger in the trigger service
+   - Set up the endpoint to receive notifications
+   - Test with database changes
 
 ## Build/Test/Deploy Commands
 
@@ -87,6 +106,13 @@ This project consists of several interrelated repositories that work together as
 - Lint: `npm run lint` or `make lint` - Run ESLint
 - Test: `npm run test` or `make test` - Run unit tests
 - Test E2E: `npm run test:e2e` or `make test-e2e` - Run Playwright tests
+
+### trigger (FastAPI)
+- Setup: `make setup` - Create venv and install dependencies
+- Run: `make run` - Start FastAPI server with CDC listener
+- Lint: `make lint` - Run pylint
+- Format: `make format` - Run black
+- Test: `make test` - Run all tests
 
 ### Top-level Project Commands
 - `make commit MESSAGE="Your commit message"` - Add and commit changes in all repos
