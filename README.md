@@ -1,4 +1,4 @@
-# Monitors Project
+# Monitor Project
 
 ## Overview
 
@@ -6,7 +6,7 @@ This project consists of several interconnected repositories that collectively f
 
 ## Repositories
 
-### monitors-api 
+### monitor-api 
 
 The main backend service that provides the core API functionality for the monitoring system. This service provides endpoints for:
 - Creating and managing monitors
@@ -16,11 +16,11 @@ The main backend service that provides the core API functionality for the monito
 
 **Tech Stack**: Python, FastAPI, SQLAlchemy, Alembic, PostgreSQL
 
-([repo](https://github.com/gotoplanb/monitors-api))
+([repo](https://github.com/gotoplanb/monitor-api))
 
-### monitors-client-nextjs
+### monitor-client-nextjs
 
-A Next.js frontend application that provides a user interface for interacting with the monitors-api. Features include:
+A Next.js frontend application that provides a user interface for interacting with the monitor-api. Features include:
 - Dashboard for viewing monitor status
 - Configuration interface for monitors
 - Alert management
@@ -28,9 +28,9 @@ A Next.js frontend application that provides a user interface for interacting wi
 
 **Tech Stack**: TypeScript, Next.js, React, Tailwind CSS, Jest for testing
 
-([repo](https://github.com/gotoplanb/monitors-client-nextjs))
+([repo](https://github.com/gotoplanb/monitor-client-nextjs))
 
-### monitors-terraform
+### monitor-terraform
 
 Infrastructure as code for deploying all components of the monitoring system. This repository includes:
 - Cloud provider configuration (AWS, Cloudflare, Sumo Logic, Vercel)
@@ -40,7 +40,7 @@ Infrastructure as code for deploying all components of the monitoring system. Th
 
 **Tech Stack**: Terraform, AWS, Cloudflare
 
-([repo](https://github.com/gotoplanb/monitors-terraform))
+([repo](https://github.com/gotoplanb/monitor-terraform))
 
 ### pester
 
@@ -57,9 +57,9 @@ Testing and monitoring utilities that send curl requests to validate the functio
 
 The system follows a standard client-server architecture:
 
-1. **monitors-client-nextjs**: Provides the user interface
-2. **monitors-api**: Provides the backend functionality
-3. **monitors-terraform**: Manages infrastructure
+1. **monitor-client-nextjs**: Provides the user interface
+2. **monitor-api**: Provides the backend functionality
+3. **monitor-terraform**: Manages infrastructure
 4. **pester**: Validates and tests the system
 
 ## Data Flow
@@ -74,7 +74,7 @@ The system follows a standard client-server architecture:
 ## Development Workflow
 
 When making changes to the system:
-1. Update the API in monitors-api
+1. Update the API in monitor-api
 2. Update the client to interact with new API features
 3. Update the infrastructure as needed
 4. Run tests with pester to validate changes

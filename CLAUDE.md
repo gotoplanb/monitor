@@ -1,4 +1,4 @@
-# Claude Guidelines for Monitors Project
+# Claude Guidelines for Monitor Project
 
 ## Project Structure and Relationships
 
@@ -6,29 +6,29 @@ This project consists of several interrelated repositories that work together as
 
 ### Repository Relationships
 
-- **monitors-api** (FastAPI backend)
+- **monitor-api** (FastAPI backend)
   - Core functionality for monitor data handling
-  - Consumed by: monitors-client-nextjs
+  - Consumed by: monitor-client-nextjs
   - Tested by: pester
-  - Deployed by: monitors-terraform
+  - Deployed by: monitor-terraform
 
-- **monitors-client-nextjs** (Frontend)
-  - UI for interacting with monitors-api
-  - Depends on: monitors-api
-  - Deployed by: monitors-terraform (Vercel configuration)
+- **monitor-client-nextjs** (Frontend)
+  - UI for interacting with monitor-api
+  - Depends on: monitor-api
+  - Deployed by: monitor-terraform (Vercel configuration)
 
-- **monitors-terraform** (Infrastructure)
+- **monitor-terraform** (Infrastructure)
   - Manages cloud resources for all components
-  - Deploys: monitors-api, monitors-client-nextjs
+  - Deploys: monitor-api, monitor-client-nextjs
   - Configures: AWS, Cloudflare, Sumo Logic, Vercel
 
 - **pester** (Testing utilities)
   - Sends curl requests to validate API functionality
-  - Tests: monitors-api endpoints
+  - Tests: monitor-api endpoints
 
 ## Key Files and Their Purpose
 
-### monitors-api
+### monitor-api
 - `app/models/monitor.py`: Core data model for monitors
 - `app/schemas/monitor.py`: Pydantic schemas for API data validation
 - `app/api/dependencies.py`: API dependency injection
@@ -36,13 +36,13 @@ This project consists of several interrelated repositories that work together as
 - `app/database.py`: Database connection handling
 - `app/main.py`: FastAPI application entry point
 
-### monitors-client-nextjs
+### monitor-client-nextjs
 - `src/utils/api.ts`: API client for communication with backend
 - `src/components/MonitorCard.tsx`: UI component for displaying monitors
 - `src/app/page.tsx`: Main application page
 - `__tests__/`: Unit and component tests
 
-### monitors-terraform
+### monitor-terraform
 - `cloudflare.tf`: Cloudflare configuration
 - `lambda.tf`: AWS Lambda configuration
 - `vercel.tf`: Vercel deployment configuration
@@ -56,32 +56,32 @@ This project consists of several interrelated repositories that work together as
 ## Common Cross-Repository Workflows
 
 1. **Adding a new monitor type**:
-   - Update `monitors-api/app/models/monitor.py` with new model fields
-   - Update `monitors-api/app/schemas/monitor.py` with new schema fields
-   - Add new API endpoints in monitors-api
-   - Update frontend components in monitors-client-nextjs
+   - Update `monitor-api/app/models/monitor.py` with new model fields
+   - Update `monitor-api/app/schemas/monitor.py` with new schema fields
+   - Add new API endpoints in monitor-api
+   - Update frontend components in monitor-client-nextjs
    - Add test cases in pester
 
 2. **Changing infrastructure**:
-   - Update relevant files in monitors-terraform
+   - Update relevant files in monitor-terraform
    - Test with pester to ensure API accessibility
    - Verify frontend functionality after deployment
 
 3. **Adding a new API endpoint**:
-   - Create endpoint in monitors-api
+   - Create endpoint in monitor-api
    - Update frontend to use the new endpoint
    - Add tests in pester to validate functionality
 
 ## Build/Test/Deploy Commands
 
-### monitors-api (FastAPI)
+### monitor-api (FastAPI)
 - Setup: `make setup` - Create venv and install dependencies
 - Run: `make run` - Start FastAPI server
 - Lint: `make lint` - Run pylint
 - Format: `make format` - Run black
 - Test: `make test` - Run all tests
 
-### monitors-client-nextjs
+### monitor-client-nextjs
 - Dev: `npm run dev` or `make run` - Start dev server
 - Build: `npm run build` or `make build` - Build for production
 - Lint: `npm run lint` or `make lint` - Run ESLint
@@ -97,12 +97,12 @@ This project consists of several interrelated repositories that work together as
 
 ## Code Style and Guidelines
 
-### Python (monitors-api)
+### Python (monitor-api)
 - Black for formatting, Pylint for linting
 - Type annotations for function parameters and returns
 - Classes: PascalCase, functions/variables: snake_case, constants: UPPERCASE
 
-### JavaScript/TypeScript (monitors-client-nextjs)
+### JavaScript/TypeScript (monitor-client-nextjs)
 - ESLint with Next.js core-web-vitals config
 - Use TypeScript types where possible
 - Use React hooks for state management
